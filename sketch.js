@@ -2,13 +2,19 @@ var hfont;
 var unit;
 var fontSize;
 var texts = [];
+var fullTexts = "";
+
+
 var mode = "ko";
-var typingModel = "auto";
+var typingModel = "self";
 
 var lineX, lineY;
 
 var autoTexts = "나는 지금 평균 200타수로 타이핑하고 있다.";
 var dissembledAutoTexts, i;
+
+var cursor;
+
 
 function preload() {
   hfont = loadFont('./assets/D2Coding.ttf');
@@ -21,40 +27,55 @@ function setup() {
   pg = createGraphics(windowWidth, windowHeight);
   pg.background('#000000');
 
+
   pg.textFont(hfont);
-  unit = round(windowWidth / 20);
+  unit = round(windowWidth / 21);
   fontSize = unit;
   pg.textSize(fontSize);
 
+  cursor = new Cursor(unit);
+
   lineX = unit/2;
   lineY = unit;
+  // cursorX = lineX;
+  // cursorY = 0;
 
   dissembledAutoTexts = Hangul.d(autoTexts);
   i = 0;
+
 }
 
 
 function draw() {
   background(0);
   image(pg, 0, 0);
-  // put drawing code here
-  fill(200);
-  rect(lineX+unit/2, 0, unit/10, unit);
+
+  // showCursor();
+  cursor.show();
 }
 
 
+function isHangul(c) {
+  if (Hangul.isHangul(c) || Hangul.isCho(c)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 function keyPressed() {
-  console.log(keyCode);
+  // console.log(keyCode);
   if (keyCode == 8) {
     texts.pop();
     if (typingModel == 'auto') {
       i = i - 1;
-      console.log("index" + i + " : " + dissembledAutoTexts[i]);
+      // console.log("index" + i + " : " + dissembledAutoTexts[i]);
     }
 
     refreshText();
   }
 }
+
 
 function keyTyped() {
   if (typingModel == 'self') {
@@ -67,9 +88,11 @@ function keyTyped() {
   return false;
 }
 
+
 function refreshText() {
   pg.background(0);
   pg.fill(200);
   fullTexts = Hangul.a(texts);
   pg.text(fullTexts, lineX, lineY);
+  cursor.checkPosition(fullTexts);
 }
