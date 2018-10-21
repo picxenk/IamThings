@@ -24,6 +24,7 @@ function preload() {
 
 
 function setup() {
+  frameRate(10);
   createCanvas(windowWidth, windowHeight);
   background("#000000");
   pg = createGraphics(windowWidth, windowHeight);
