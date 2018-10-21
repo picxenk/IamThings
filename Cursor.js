@@ -11,17 +11,7 @@ Cursor.prototype.show = function() {
   rect(this.x, this.y, this.w, this.h);
 }
 
-Cursor.prototype.checkPosition = function(sentence) {
-  var x = 0;
-  for (var i=0; i<sentence.length; i++) {
-    var w = sentence[i];
-    if (isHangul(w)) {
-      x = x + unit;
-    } else {
-      x = x + unit/2;
-    }
-  }
-  // cursorX = lineX + x;
-  this.x = lineX + x;
-
+Cursor.prototype.setPosition = function(x, y) {
+  this.x = x;
+  this.y = y;
 }

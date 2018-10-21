@@ -1,5 +1,7 @@
-var hfont;
 var unit;
+var unitNumber = 21;
+
+var hfont;
 var fontSize;
 var texts = [];
 var fullTexts = "";
@@ -29,7 +31,7 @@ function setup() {
 
 
   pg.textFont(hfont);
-  unit = round(windowWidth / 21);
+  unit = round(windowWidth / unitNumber);
   fontSize = unit;
   pg.textSize(fontSize);
 
@@ -72,7 +74,7 @@ function keyPressed() {
       // console.log("index" + i + " : " + dissembledAutoTexts[i]);
     }
 
-    refreshText();
+    renderText();
   }
 }
 
@@ -84,15 +86,33 @@ function keyTyped() {
     texts.push(dissembledAutoTexts[i]);
     i = i + 1;
   }
-  refreshText();
+  renderText();
   return false;
 }
 
 
-function refreshText() {
+function renderText() {
   pg.background(0);
   pg.fill(200);
   fullTexts = Hangul.a(texts);
-  pg.text(fullTexts, lineX, lineY);
-  cursor.checkPosition(fullTexts);
+  // pg.text(fullTexts, lineX, lineY);
+
+  lineX = unit/2;
+  lineY = unit;
+
+  for (var i=0; i<fullTexts.length; i++) {
+    var char = fullTexts[i];
+    pg.text(char, lineX, lineY);
+    if (isHangul(char)) {
+      lineX = lineX + unit;
+    } else {
+      lineX = lineX + unit/2;
+    }
+    if (lineX >= unit*unitNumber - unit/2) {
+      lineX = unit/2;
+      lineY = lineY + unit;
+    }
+  }
+
+  cursor.setPosition(lineX, lineY-unit);
 }
