@@ -14,6 +14,7 @@ Cursor.prototype.show = function() {
   } else {
     fill(0);
   }
+  noStroke();
   rect(this.x, this.y+unit/5, this.w, this.h);
 }
 

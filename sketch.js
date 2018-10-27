@@ -54,7 +54,18 @@ function draw() {
   image(pg, 0, 0);
 
   // showCursor();
+  showGuide();
   cursor.show();
+}
+
+
+function showGuide() {
+  strokeWeight(0.5);
+  stroke('#777777');
+  noFill();
+  var w = windowWidth;
+  var h = w / 9 * 16;
+  rect(0, 0, w, h);
 }
 
 
