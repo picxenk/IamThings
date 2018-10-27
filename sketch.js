@@ -14,6 +14,11 @@ var mode = "ko";
 var currentModel;
 var modelSelf, modelSpeed;
 
+var tLastTyped = 0;
+var tRecentTypes = [];
+
+
+var debug = true;
 
 function preload() {
   hfont = loadFont('./assets/D2Coding.ttf');
@@ -80,7 +85,29 @@ function isHangul(c) {
   }
 }
 
+
+function timestamp() {
+  var now = round(millis());
+  var diff = now - tLastTyped;
+  tLastTyped = now;
+
+  if (diff > 5000) tRecentTypes = [];
+  tRecentTypes.push(diff);
+
+  if (tRecentTypes.length > 15) {
+    tRecentTypes = tRecentTypes.slice(-15);
+  }
+
+  modelSpeed.averageRecentTypes(tRecentTypes);
+
+  if (debug) console.log("tLastTyped : " + tLastTyped);
+  if (debug) console.log("tRecentTypes : " + tRecentTypes);
+  if (debug) console.log("avg speed : " + modelSpeed.speed);
+}
+
+
 function keyPressed() {
+  timestamp();
   currentModel.keyPressed();
 
   var last = editor.renderText(currentModel.texts);
@@ -89,6 +116,7 @@ function keyPressed() {
 
 
 function keyTyped() {
+  // timestamp();
   if (key == 1) currentModel = modelSelf;
   if (key == 2) currentModel = modelSpeed;
 
