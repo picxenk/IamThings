@@ -11,12 +11,8 @@ var texts = [];
 var fullTexts = "";
 
 var mode = "ko";
-var typingModel = "self";
 var currentModel;
 var modelSelf, modelSpeed;
-
-var autoTexts = "나는 지금 평균 200타수로 타이핑하고 있다.";
-var dissembledAutoTexts, i;
 
 
 function preload() {
@@ -42,10 +38,6 @@ function setup() {
   modelSelf = new SelfTypingModel();
   modelSpeed = new SpeedTypingModel();
   currentModel = modelSelf;
-
-
-  dissembledAutoTexts = Hangul.d(autoTexts);
-  i = 0;
 
   background('#111111');
   showQuestion();

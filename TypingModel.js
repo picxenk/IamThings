@@ -30,4 +30,5 @@ SpeedTypingModel.prototype.keyPressed = function() {
 SpeedTypingModel.prototype.keyTyped = function(key) {
   this.texts.push(this.sentence[this.i]);
   this.i = this.i + 1;
+  if (this.i >= this.sentence.length) this.i = 0;
 }
