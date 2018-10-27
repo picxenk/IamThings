@@ -1,6 +1,6 @@
-function Cursor(unit) {
+function Cursor(unit, y) {
   this.x = unit/2;
-  this.y = 0;
+  this.y = y;
   this.w = unit/4;
   this.h = unit;
   this.color = color(200);

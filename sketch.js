@@ -1,21 +1,20 @@
 var unit;
 var unitNumber = 16;
 
+var cursor;
+var editor;
+var editorH, topH;
+
 var hfont;
 var fontSize;
 var texts = [];
 var fullTexts = "";
 
-
 var mode = "ko";
 var typingModel = "self";
 
-var lineX, lineY;
-
 var autoTexts = "나는 지금 평균 200타수로 타이핑하고 있다.";
 var dissembledAutoTexts, i;
-
-var cursor;
 
 
 function preload() {
@@ -26,36 +25,29 @@ function preload() {
 function setup() {
   frameRate(10);
   createCanvas(windowWidth, windowHeight);
-  background("#000000");
-  pg = createGraphics(windowWidth, windowHeight);
-  pg.background('#000000');
+  editorH = round(windowHeight*0.78);
+  topH = windowHeight - editorH;
 
-
-  pg.textFont(hfont);
   unit = round(windowWidth / unitNumber);
   fontSize = unit;
-  pg.textSize(fontSize);
+  editor = new Editor(windowWidth, editorH);
+  editor.setPosition(0, topH);
+  editor.setupFont(hfont, fontSize);
 
-  cursor = new Cursor(unit);
-
-  lineX = unit/2;
-  lineY = unit;
-  // cursorX = lineX;
-  // cursorY = 0;
+  cursor = new Cursor(unit, editor.y);
 
   dissembledAutoTexts = Hangul.d(autoTexts);
   i = 0;
-
 }
 
 
 function draw() {
   background(0);
-  image(pg, 0, 0);
 
-  // showCursor();
-  showGuide();
+  editor.show();
   cursor.show();
+
+  showGuide();
 }
 
 
@@ -86,7 +78,8 @@ function keyPressed() {
       // console.log("index" + i + " : " + dissembledAutoTexts[i]);
     }
 
-    renderText();
+    var last = editor.renderText(texts);
+    cursor.setPosition(last[0], editor.y+last[1]-unit);
   }
 }
 
@@ -98,33 +91,8 @@ function keyTyped() {
     texts.push(dissembledAutoTexts[i]);
     i = i + 1;
   }
-  renderText();
+
+  var last = editor.renderText(texts);
+  cursor.setPosition(last[0], editor.y+last[1]-unit);
   return false;
-}
-
-
-function renderText() {
-  pg.background(0);
-  pg.fill(200);
-  fullTexts = Hangul.a(texts);
-  // pg.text(fullTexts, lineX, lineY);
-
-  lineX = unit/2;
-  lineY = unit;
-
-  for (var i=0; i<fullTexts.length; i++) {
-    var char = fullTexts[i];
-    pg.text(char, lineX, lineY);
-    if (isHangul(char)) {
-      lineX = lineX + unit;
-    } else {
-      lineX = lineX + unit/2;
-    }
-    if (lineX >= unit*unitNumber - unit/2) {
-      lineX = unit/2;
-      lineY = lineY + unit;
-    }
-  }
-
-  cursor.setPosition(lineX, lineY-unit);
 }
