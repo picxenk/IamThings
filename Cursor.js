@@ -17,7 +17,11 @@ Cursor.prototype.show = function() {
     fill(0);
   }
   noStroke();
-  rect(this.x, this.y+unit/5, this.w, this.h);
+  if (this.blinkTerm < 2) {
+    rect(this.x-2, this.y+unit/5-2, this.w+4, this.h+4);
+  } else {
+    rect(this.x, this.y+unit/5, this.w, this.h);
+  }
 }
 
 Cursor.prototype.blink = function() {
