@@ -1,5 +1,5 @@
-var unit;
-var unitNumber = 16;
+var unit, qunit;
+var unitNumber = 20;
 
 var cursor;
 var editor;
@@ -28,8 +28,11 @@ function preload() {
 function setup() {
   frameRate(10);
   createCanvas(windowWidth, windowHeight);
-  editorH = round(windowHeight*0.78);
-  topH = windowHeight - editorH;
+
+  qunit = round(windowWidth/18);
+  topH = qunit*7;
+  editorH = windowHeight - topH;
+  // topH = windowHeight - editorH;
 
   unit = round(windowWidth / unitNumber);
   fontSize = unit;
@@ -45,14 +48,17 @@ function setup() {
   modelOther = new OtherTypingModel();
   currentModel = modelSelf;
 
-  background('#111111');
   showQuestion();
 }
 
 
 function draw() {
 
-  if (typeCount > currentModel.typeLimit - 20) cursor.blinkFast();
+  if (typeCount > currentModel.typeLimit - 20) {
+    cursor.blinkFast();
+  } else {
+    cursor.blinkSlow();
+  }
   if (typeCount > currentModel.typeLimit) changeTypingModel();
 
   editor.show();
@@ -85,10 +91,12 @@ function changeTypingModel() {
 
 
 function showQuestion() {
+  background('#cccccc');
   textFont(hfont);
-  textSize(unit);
-  fill(200);
-  text("{ 디지털화된 사물이나 존재에 대해\n 생각해보십시오.\n 생각을 적어보십시오.\n 생각을 읽어보십시오.\n } 반복하십시오.", unit/2, unit);
+  var qunit = round(windowWidth/18);
+  textSize(qunit);
+  fill('#333333');
+  text("디지털화된 사물이나 존재에 대해 {\n 생각해보십시오.\n 생각을 적어보십시오.\n 생각을 읽어보십시오.\n} 반복하십시오.", qunit/2, qunit*1.5);
 }
 
 
@@ -125,12 +133,23 @@ function timestamp() {
 }
 
 
+function renderTexts() {
+  var last = editor.renderText(fullTexts.concat(currentModel.texts));
+  cursor.setPosition(last[0], editor.y+last[1]-unit);
+
+  if (last[1]+unit*1.5 > editor.h) fullTexts = [];
+}
+
+
 function keyPressed() {
   timestamp();
   currentModel.keyPressed();
+  if (keyCode == 8) {
+    typeCount -= 1;
+    if (typeCount < 0) typeCount = 1;
+  }
 
-  var last = editor.renderText(fullTexts.concat(currentModel.texts));
-  cursor.setPosition(last[0], editor.y+last[1]-unit);
+  renderTexts();
 }
 
 
@@ -143,7 +162,6 @@ function keyTyped() {
   currentModel.keyTyped(key);
   typeCount += 1;
 
-  var last = editor.renderText(fullTexts.concat(currentModel.texts));
-  cursor.setPosition(last[0], editor.y+last[1]-unit);
+  renderTexts();
   return false;
 }

@@ -3,6 +3,7 @@ function Cursor(unit, y) {
   this.y = y;
   this.w = unit/4;
   this.h = unit;
+
   this.color = color(200);
   this.blinkTerm;
   this.blinkSlow();
@@ -18,7 +19,8 @@ Cursor.prototype.show = function() {
   }
   noStroke();
   if (this.blinkTerm < 2) {
-    rect(this.x-2, this.y+unit/5-2, this.w+4, this.h+4);
+    var g = unit/8;
+    rect(this.x, this.y+unit/5-g, this.w+(g*2), this.h+(g*2));
   } else {
     rect(this.x, this.y+unit/5, this.w, this.h);
   }

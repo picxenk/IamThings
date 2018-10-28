@@ -52,12 +52,12 @@ Editor.prototype.renderText = function(texts) {
     } else {
       lineX = lineX + this.unit/2;
     }
-    if (lineX >= this.unit*unitNumber - this.unit/2) {
+    if (lineX >= this.unit*unitNumber - this.unit) {
       lineX = this.unit/2;
-      lineY = lineY + this.unit;
+      lineY = lineY + this.unit*1.4;
     }
   }
 
   return [lineX, lineY];
-  cursor.setPosition(lineX, lineY-unit);
+  // cursor.setPosition(lineX, lineY-unit);
 }
