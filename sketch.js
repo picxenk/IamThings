@@ -7,12 +7,11 @@ var editorH, topH;
 
 var hfont;
 var fontSize;
-var texts = [];
-var fullTexts = "";
+var fullTexts = [];
 
 var mode = "ko";
 var currentModel;
-var modelSelf, modelSpeed;
+var modelSelf, modelSpeed, modelOther;
 
 var tLastTyped = 0;
 var tRecentTypes = [];
@@ -42,6 +41,7 @@ function setup() {
   // init TypingModels
   modelSelf = new SelfTypingModel();
   modelSpeed = new SpeedTypingModel();
+  modelOther = new OtherTypingModel();
   currentModel = modelSelf;
 
   background('#111111');
@@ -51,10 +51,26 @@ function setup() {
 
 function draw() {
 
+  // if (frameCount % 5000 == 0) changeTypingModel();
+
   editor.show();
   cursor.show();
 
   showGuide();
+}
+
+
+function changeTypingModel() {
+  if (debug) console.log("[Change TypingModel] befor :" + currentModel.name);
+
+  fullTexts = fullTexts.concat(currentModel.texts);
+  if (currentModel.name == 'self') currentModel = modelSpeed;
+  else if (currentModel.name == 'speed') currentModel = modelOther;
+  else if (currentModel.name == 'other') currentModel = modelSelf;
+
+  currentModel.init();
+  
+  if (debug) console.log("[Change TypingModel] after :" + currentModel.name);
 }
 
 
@@ -103,7 +119,7 @@ function keyPressed() {
   timestamp();
   currentModel.keyPressed();
 
-  var last = editor.renderText(currentModel.texts);
+  var last = editor.renderText(fullTexts.concat(currentModel.texts));
   cursor.setPosition(last[0], editor.y+last[1]-unit);
 }
 
@@ -112,10 +128,11 @@ function keyTyped() {
   // timestamp();
   if (key == 1) currentModel = modelSelf;
   if (key == 2) currentModel = modelSpeed;
+  if (key == 9) changeTypingModel();
 
   currentModel.keyTyped(key);
 
-  var last = editor.renderText(currentModel.texts);
+  var last = editor.renderText(fullTexts.concat(currentModel.texts));
   cursor.setPosition(last[0], editor.y+last[1]-unit);
   return false;
 }

@@ -1,5 +1,10 @@
 // Self  =====================================================================
 function SelfTypingModel() {
+  this.name = 'self';
+  this.texts = [];
+}
+
+SelfTypingModel.prototype.init = function() {
   this.texts = [];
 }
 
@@ -16,10 +21,16 @@ SelfTypingModel.prototype.keyTyped = function(key) {
 
 // Speed  =====================================================================
 function SpeedTypingModel() {
+  this.name = 'speed';
   this.texts = [];
   this.sentence = "";
   this.i = 0;
   this.speed = 0;
+}
+
+SpeedTypingModel.prototype.init = function() {
+  this.texts = [];
+  this.i = 0;
 }
 
 SpeedTypingModel.prototype.keyPressed = function() {
@@ -53,4 +64,24 @@ SpeedTypingModel.prototype.averageRecentTypes = function(recentTypes) {
   }
 
   return this.speed;
+}
+
+// Other =====================================================================
+function OtherTypingModel() {
+  this.name = 'other';
+  this.texts = [];
+}
+
+OtherTypingModel.prototype.init = function() {
+  this.texts = [];
+}
+
+OtherTypingModel.prototype.keyPressed = function() {
+  if (keyCode == 8) {
+    this.texts.pop();
+  }
+}
+
+OtherTypingModel.prototype.keyTyped = function(key) {
+  this.texts.push(key);
 }
