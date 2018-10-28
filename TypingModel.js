@@ -37,6 +37,7 @@ SpeedTypingModel.prototype.keyPressed = function() {
   if (keyCode == 8) {
     this.texts.pop();
     this.i = this.i - 1;
+    if (this.i < 0) this.i = 0;
   }
 }
 
@@ -70,18 +71,31 @@ SpeedTypingModel.prototype.averageRecentTypes = function(recentTypes) {
 function OtherTypingModel() {
   this.name = 'other';
   this.texts = [];
+  this.sentence = "";
+  this.i = 0;
 }
 
 OtherTypingModel.prototype.init = function() {
   this.texts = [];
+  this.i = 0;
+  var sentences = loadTexts();
+  var num = sentences.length;
+  if (num > 5) num = num - 5;
+  var i = floor(random(num));
+  this.sentence = Hangul.d(sentences[i]);
+
 }
 
 OtherTypingModel.prototype.keyPressed = function() {
   if (keyCode == 8) {
     this.texts.pop();
+    this.i = this.i - 1;
+    if (this.i < 0) this.i = 0;
   }
 }
 
 OtherTypingModel.prototype.keyTyped = function(key) {
-  this.texts.push(key);
+  this.texts.push(this.sentence[this.i]);
+  this.i = this.i + 1;
+  if (this.i >= this.sentence.length) this.i = 0;
 }

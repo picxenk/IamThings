@@ -13,6 +13,7 @@ var mode = "ko";
 var currentModel;
 var modelSelf, modelSpeed, modelOther;
 
+var typeCount = 0;
 var tLastTyped = 0;
 var tRecentTypes = [];
 
@@ -51,7 +52,7 @@ function setup() {
 
 function draw() {
 
-  // if (frameCount % 5000 == 0) changeTypingModel();
+  if (typeCount > 50) changeTypingModel();
 
   editor.show();
   cursor.show();
@@ -64,12 +65,18 @@ function changeTypingModel() {
   if (debug) console.log("[Change TypingModel] befor :" + currentModel.name);
 
   fullTexts = fullTexts.concat(currentModel.texts);
-  if (currentModel.name == 'self') currentModel = modelSpeed;
-  else if (currentModel.name == 'speed') currentModel = modelOther;
-  else if (currentModel.name == 'other') currentModel = modelSelf;
+  if (currentModel.name == 'self') {
+    saveTexts(Hangul.a(currentModel.texts));
+    currentModel = modelSpeed;
+  } else if (currentModel.name == 'speed') {
+    currentModel = modelOther;
+  } else if (currentModel.name == 'other') {
+    currentModel = modelSelf;
+  }
 
   currentModel.init();
-  
+  typeCount = 0;
+
   if (debug) console.log("[Change TypingModel] after :" + currentModel.name);
 }
 
@@ -131,6 +138,7 @@ function keyTyped() {
   if (key == 9) changeTypingModel();
 
   currentModel.keyTyped(key);
+  typeCount += 1;
 
   var last = editor.renderText(fullTexts.concat(currentModel.texts));
   cursor.setPosition(last[0], editor.y+last[1]-unit);
