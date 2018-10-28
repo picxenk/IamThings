@@ -2,6 +2,7 @@
 function SelfTypingModel() {
   this.name = 'self';
   this.texts = [];
+  this.typeLimit = 50;
 }
 
 SelfTypingModel.prototype.init = function() {
@@ -23,6 +24,7 @@ SelfTypingModel.prototype.keyTyped = function(key) {
 function SpeedTypingModel() {
   this.name = 'speed';
   this.texts = [];
+  this.typeLimit = 52;
   this.sentence = "";
   this.i = 0;
   this.speed = 0;
@@ -71,6 +73,7 @@ SpeedTypingModel.prototype.averageRecentTypes = function(recentTypes) {
 function OtherTypingModel() {
   this.name = 'other';
   this.texts = [];
+  this.typeLimit = 50;
   this.sentence = "";
   this.i = 0;
 }

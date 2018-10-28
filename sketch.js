@@ -52,7 +52,8 @@ function setup() {
 
 function draw() {
 
-  if (typeCount > 50) changeTypingModel();
+  if (typeCount > currentModel.typeLimit - 20) cursor.blinkFast();
+  if (typeCount > currentModel.typeLimit) changeTypingModel();
 
   editor.show();
   cursor.show();
@@ -74,6 +75,8 @@ function changeTypingModel() {
     currentModel = modelSelf;
   }
 
+  cursor.modelColor(currentModel.name);
+  cursor.blinkSlow();
   currentModel.init();
   typeCount = 0;
 

@@ -4,6 +4,8 @@ function Cursor(unit, y) {
   this.w = unit/4;
   this.h = unit;
   this.color = color(200);
+  this.blinkTerm;
+  this.blinkSlow();
 }
 
 Cursor.prototype.show = function() {
@@ -19,13 +21,26 @@ Cursor.prototype.show = function() {
 }
 
 Cursor.prototype.blink = function() {
-  if (frameCount % 5 == 0) {
+  if (frameCount % this.blinkTerm == 0) {
     if (this.isOn == true) this.isOn = false;
     else this.isOn = true;
   }
 }
 
+Cursor.prototype.blinkFast = function() {
+  this.blinkTerm = 1;
+}
+Cursor.prototype.blinkSlow = function() {
+  this.blinkTerm = 6;
+}
+
 Cursor.prototype.setPosition = function(x, y) {
   this.x = x;
   this.y = y;
+}
+
+Cursor.prototype.modelColor = function(model) {
+    if (model == 'self') this.color = color(200);
+    else if (model == 'speed') this.color = color(200, 30, 30);
+    else if (model == 'other') this.color = color(30, 200, 30);
 }
