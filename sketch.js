@@ -9,9 +9,10 @@ var hfont;
 var fontSize;
 var fullTexts = [];
 
-var mode = "ko";
+var lang = "ko";
 var currentModel;
 var modelSelf, modelSpeed, modelOther;
+var modelChangeCount = 0;
 
 var typeCount = 0;
 var tLastTyped = 0;
@@ -85,6 +86,9 @@ function changeTypingModel() {
   cursor.blinkSlow();
   currentModel.init();
   typeCount = 0;
+  modelChangeCount += 1;
+
+  if (modelChangeCount % 10 == 0) saveGoogleSheet();
 
   if (debug) console.log("[Change TypingModel] after :" + currentModel.name);
 }
@@ -157,7 +161,10 @@ function keyTyped() {
   // timestamp();
   if (key == 1) currentModel = modelSelf;
   if (key == 2) currentModel = modelSpeed;
-  if (key == 9) changeTypingModel();
+  if (key == 9) {
+    changeTypingModel();
+    saveGoogleSheet();
+  }
 
   currentModel.keyTyped(key);
   typeCount += 1;
