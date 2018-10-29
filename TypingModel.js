@@ -103,3 +103,36 @@ OtherTypingModel.prototype.keyTyped = function(key) {
   this.i = this.i + 1;
   if (this.i >= this.sentence.length) this.i = 0;
 }
+
+// Machine Learning ===========================================================
+function MLTypingModel() {
+  this.name = 'ML';
+  this.texts = [];
+  this.typeLimit = 50;
+  this.sentence = "";
+  this.i = 0;
+}
+
+MLTypingModel.prototype.init = function() {
+  this.texts = [];
+  this.i = 0;
+  var sentences = loadTexts('MLTexts');
+  var num = sentences.length;
+  var i = floor(random(num));
+  this.sentence = Hangul.d(sentences[i]);
+  this.typeLimit = this.sentence.length-1;
+}
+
+MLTypingModel.prototype.keyPressed = function() {
+  if (keyCode == 8) {
+    this.texts.pop();
+    this.i = this.i - 1;
+    if (this.i < 0) this.i = 0;
+  }
+}
+
+MLTypingModel.prototype.keyTyped = function(key) {
+  this.texts.push(this.sentence[this.i]);
+  this.i = this.i + 1;
+  if (this.i >= this.sentence.length) this.i = 0;
+}

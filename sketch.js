@@ -11,7 +11,7 @@ var fullTexts = [];
 
 var lang = "ko";
 var currentModel;
-var modelSelf, modelSpeed, modelOther;
+var modelSelf, modelSpeed, modelOther, modelML;
 var modelChangeCount = 0;
 
 var typeCount = 0;
@@ -47,9 +47,11 @@ function setup() {
   modelSelf = new SelfTypingModel();
   modelSpeed = new SpeedTypingModel();
   modelOther = new OtherTypingModel();
+  modelML = new MLTypingModel();
   currentModel = modelSelf;
 
   readGoogleSheet('otherTextsNew');
+  readGoogleSheet('MLTexts');
   showQuestion();
 }
 
@@ -80,6 +82,8 @@ function changeTypingModel() {
   } else if (currentModel.name == 'speed') {
     currentModel = modelOther;
   } else if (currentModel.name == 'other') {
+    currentModel = modelML;
+  } else if (currentModel.name == 'ML') {
     currentModel = modelSelf;
   }
 
