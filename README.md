@@ -1,4 +1,5 @@
 # IamThings
+```
 I am Things of Internet, am I ? (2018)
 by 김승범(SeungbumKim@PROTOROOM)
 
@@ -18,17 +19,17 @@ by 김승범(SeungbumKim@PROTOROOM)
 지금의 생각은 누가 적은 누구의 생각을 누가 읽는 것인가?
 사물들의 네트워크 (Internet of Things) 안에서 나는
 '인터넷의 사물들' 중 하나가 아닐까?
+```
 
-
-# List of Answers
+## List of Answers
  * https://docs.google.com/spreadsheets/d/14sUChAbx71rwjKvIq2nqOCv-eSL_eSNtXt9TF4xGwGE/edit?usp=sharing
 
 
-# License
+## License
  * https://choosealicense.com/licenses/artistic-2.0/
 
 
-# Credits of 3rd party libraries and resources
+## Credits of 3rd party libraries and resources
  * p5.js (https://p5js.org)
  * Hangul.js, MIT License by Jaemin Jo (https://github.com/e-/Hangul.js)
  * favicon keyboard ico, CC by Yusuke Kamiyamane (http://p.yusukekamiyamane.com/)
