@@ -28,18 +28,30 @@ function loadLocal(key) {
 }
 
 
-function saveTexts(sentence) {
-  var otherTexts = loadTexts();
-  otherTexts.push(sentence);
-  saveLocal('otherTexts', JSON.stringify(otherTexts));
+// key : otherTexts, MLTexts
+function resetTexts(key, sentences) {
+  var texts = [];
+  for (var i=0; i<sentences.length; i++) {
+    if (sentences[i] != "") {
+      texts.push(sentences[i]);
+    }
+  }
+  saveLocal(key, JSON.stringify(texts));
 }
 
 
-function loadTexts() {
-  var otherTexts = [];
-  otherTexts = JSON.parse(loadLocal('otherTexts'));
-  if (otherTexts == null) otherTexts = [];
-  return otherTexts;
+function saveTexts(key, sentence) {
+  var texts = loadTexts(key);
+  texts.push(sentence);
+  saveLocal(key, JSON.stringify(texts));
+}
+
+
+function loadTexts(key) {
+  var texts = [];
+  texts = JSON.parse(loadLocal(key));
+  if (texts == null) texts = [];
+  return texts;
 }
 
 
@@ -62,9 +74,10 @@ function readGoogleSheet(name) {
     data: {action: 'read', sheet: name},
     type: "POST",
     success: function(r) {
-      console.log(r);
+      // console.log(r);
       var data = JSON.parse(r['value']);
-      console.log(data);
+      // console.log(data);
+      resetTexts(name, data);
     },
     error: function(xhr, status, error) {}
   };

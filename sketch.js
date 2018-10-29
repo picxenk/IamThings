@@ -73,7 +73,7 @@ function changeTypingModel() {
 
   fullTexts = fullTexts.concat(currentModel.texts);
   if (currentModel.name == 'self') {
-    saveTexts(Hangul.a(currentModel.texts));
+    saveTexts('otherTexts', Hangul.a(currentModel.texts));
     currentModel = modelSpeed;
   } else if (currentModel.name == 'speed') {
     currentModel = modelOther;

@@ -81,7 +81,7 @@ function OtherTypingModel() {
 OtherTypingModel.prototype.init = function() {
   this.texts = [];
   this.i = 0;
-  var sentences = loadTexts();
+  var sentences = loadTexts('otherTexts');
   var num = sentences.length;
   if (num > 5) num = num - 5;
   var i = floor(random(num));
