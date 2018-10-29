@@ -33,3 +33,12 @@ by 김승범(SeungbumKim@PROTOROOM)
  * p5.js (https://p5js.org)
  * Hangul.js, MIT License by Jaemin Jo (https://github.com/e-/Hangul.js)
  * favicon keyboard ico, CC by Yusuke Kamiyamane (http://p.yusukekamiyamane.com/)
+
+ * 신경망학습을 통해 생성된 문장은 아래 수업에 참여한 총 41명 학생의 텍스트(text/tech_culture.txt)를 학습 데이터로 사용하였다.
+   * 2018년도 1학기 성균관대학교 테크노컬쳐론
+   * 책임교수 : 천정환
+   * 운영강사 : 강부원, 오영진, (특강 : 김승범, 이종관, 오경미)
+   * 학습된 텍스트는 다음 3개의 질문에 대한 학생들의 생각이다.
+    1. 네번째 불연속'의 개념을 간단히 설명하고, 이에 대한 우리 사회의 구체적인 징후를 찾아 보시오.
+    1. '기술적 대상들에 대한 인문학적 개입'은 어떤 형태와 방식으로 이뤄질 수 있는가?
+    1. '모두의 언어'로서 '컴퓨터 언어'는 어떤 가능성과 가치를 가지는가?('메타미디어'의 관점에서)﻿
