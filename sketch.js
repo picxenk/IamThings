@@ -49,6 +49,7 @@ function setup() {
   modelOther = new OtherTypingModel();
   currentModel = modelSelf;
 
+  readGoogleSheet('otherTextsNew');
   showQuestion();
 }
 

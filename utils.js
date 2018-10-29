@@ -74,9 +74,10 @@ function readGoogleSheet(name) {
     data: {action: 'read', sheet: name},
     type: "POST",
     success: function(r) {
-      // console.log(r);
+      console.log(r);
       var data = JSON.parse(r['value']);
       // console.log(data);
+      if (name == 'otherTextsNew') name = 'otherTexts';
       resetTexts(name, data);
     },
     error: function(xhr, status, error) {}

@@ -24,7 +24,7 @@ SelfTypingModel.prototype.keyTyped = function(key) {
 function SpeedTypingModel() {
   this.name = 'speed';
   this.texts = [];
-  this.typeLimit = 52;
+  this.typeLimit = 100;
   this.sentence = "";
   this.i = 0;
   this.speed = 0;
@@ -86,6 +86,7 @@ OtherTypingModel.prototype.init = function() {
   if (num > 5) num = num - 5;
   var i = floor(random(num));
   this.sentence = Hangul.d(sentences[i]);
+  this.typeLimit = this.sentence.length-1;
 
 }
 
