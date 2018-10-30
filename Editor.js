@@ -41,8 +41,9 @@ Editor.prototype.renderText = function(texts) {
   this.pg.fill(this.fontColor);
   var fullTexts = Hangul.a(texts);
 
-  var lineX = this.unit/2;
-  var lineY = this.unit;
+  var g = 4;
+  var lineX = this.unit/2*g;
+  var lineY = this.unit*g;
 
   for (var i=0; i<fullTexts.length; i++) {
     var char = fullTexts[i];
@@ -52,8 +53,8 @@ Editor.prototype.renderText = function(texts) {
     } else {
       lineX = lineX + this.unit/2;
     }
-    if (lineX >= this.unit*unitNumber - this.unit) {
-      lineX = this.unit/2;
+    if (lineX >= this.unit*unitNumber - this.unit/2*g) {
+      lineX = this.unit/2*g;
       lineY = lineY + this.unit*1.4;
     }
   }

@@ -46,8 +46,8 @@ Cursor.prototype.setPosition = function(x, y) {
 }
 
 Cursor.prototype.modelColor = function(model) {
-    if (model == 'self') this.color = color(200);
-    else if (model == 'speed') this.color = color(200, 30, 30);
-    else if (model == 'other') this.color = color(30, 200, 30);
-    else if (model == 'ML') this.color = color(30, 30, 200);
+    if (model == 'self') this.color = color(220);
+    else if (model == 'speed') this.color = color(220, 30, 30);
+    else if (model == 'other') this.color = color(30, 220, 30);
+    else if (model == 'ML') this.color = color(30, 30, 220);
 }

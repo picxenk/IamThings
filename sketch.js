@@ -1,5 +1,5 @@
 var unit, qunit;
-var unitNumber = 20;
+var unitNumber = 24;
 
 var cursor;
 var editor;
@@ -19,7 +19,7 @@ var tLastTyped = 0;
 var tRecentTypes = [];
 
 
-var debug = true;
+var debug = false;
 
 function preload() {
   hfont = loadFont('./assets/D2Coding.ttf');
@@ -41,8 +41,6 @@ function setup() {
   editor.setPosition(0, topH);
   editor.setupFont(hfont, fontSize);
 
-  cursor = new Cursor(unit, editor.y);
-
   // init TypingModels
   modelSelf = new SelfTypingModel();
   modelSpeed = new SpeedTypingModel();
@@ -53,12 +51,14 @@ function setup() {
   readGoogleSheet('otherTextsNew');
   readGoogleSheet('MLTexts');
   showQuestion();
+
+  cursor = new Cursor(unit, editor.y);
+  renderTexts();
 }
 
 
 function draw() {
-
-  if (typeCount > currentModel.typeLimit - 20) {
+  if (typeCount > currentModel.typeLimit - 15) {
     cursor.blinkFast();
   } else {
     cursor.blinkSlow();
@@ -118,8 +118,6 @@ function showGuide() {
   // rect(0, 0, w, h);
   line(0, h, w, h);
 }
-
-
 
 
 function timestamp() {
