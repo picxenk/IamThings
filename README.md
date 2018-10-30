@@ -35,7 +35,7 @@ by 김승범(SeungbumKim@PROTOROOM)
  * [Hangul.js](https://github.com/e-/Hangul.js), MIT License by Jaemin Jo
  * favicon keyboard ico, CC by [Yusuke Kamiyamane](http://p.yusukekamiyamane.com/)
  * [D2 coding font](https://github.com/naver/d2codingfont), OpenFontLicense
-
+ * Google Spreadsheet App Script
  * [Text Generation using a RNN](https://colab.research.google.com/github/tensorflow/tensorflow/blob/master/tensorflow/contrib/eager/python/examples/generative_examples/text_generation.ipynb), Apache License, Copyright 2018 The TensorFlow Authors
  * 신경망학습을 통해 생성된 문장은 아래 수업에 참여한 총 41명 학생의 텍스트(text/tech_culture.txt)를 학습 데이터로 사용하였다.
    * 2018년도 1학기 성균관대학교 테크노컬쳐론
