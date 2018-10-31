@@ -70,7 +70,7 @@ function draw() {
   cursor.show();
 
   showGuide();
-  checkActivity();
+  if (frameCount % 30 == 0) checkActivity();
 }
 
 
@@ -127,7 +127,7 @@ function checkActivity() {
   var now = round(millis());
   var diff = now - tLastTyped;
 
-  if (diff > 10000) {
+  if (diff > 20000) {
     currentModel = modelSelf;
     cursor.modelColor(currentModel.name);
     cursor.blinkSlow();
