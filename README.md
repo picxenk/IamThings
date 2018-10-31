@@ -21,8 +21,28 @@ by 김승범(SeungbumKim@PROTOROOM)
 '인터넷의 사물들' 중 하나가 아닐까?
 ```
 
+과거 컴퓨터의 터미널같은 검은 화면이 여러분 앞에 주어집니다. 화면과 여러분 사이를 연결해줄 키보드가 있습니다.
+각인이 없는 자판은 일종의 익명성을 가진 키보드이기도 합니다. 어색하고 자주 오타를 내겠지만 딸깍딸깍 한 자씩 더듬어 나가다보면
+어느새 손의 기억은 여러분의 생각을 문자로 적어내려가게 됩니다. 계속 그렇게 적어내려가다가 어떤 변화를 관찰하고 느껴보세요.
+
+화면 속 타이핑 하는 순간을 가리키는 '커서의 변화'와 흘러가는 화면 속의 문자들과 혼란스러워질 여러분의 생각을 관찰해주세요.
+
+## Exhibition
+ * 2018년 11월 1일 ~ 4일, 포킹룸(Forking Room) 당신의 똑똑한 이웃들, @탈영역우정국
+ * https://www.facebook.com/events/182525919326123/
+ * 주최자 : [Unmake Lab](http://www.unmakelab.org)
+
+
 ## List of Answers
- * https://docs.google.com/spreadsheets/d/14sUChAbx71rwjKvIq2nqOCv-eSL_eSNtXt9TF4xGwGE/edit?usp=sharing
+ * 여러 대상들이 생성한 문장은 전시가 끝나고 링크를 올리겠습니다. [.](https://docs.google.com/spreadsheets/d/14sUChAbx71rwjKvIq2nqOCv-eSL_eSNtXt9TF4xGwGE/edit?usp=sharing)
+
+
+## Cursors
+화면 속의 커서는 크게 4개의 색 변화를 갖고 있고, 그에 따라 다른 문장을 만들어냅니다.
+ * 흰색의 커서 : 타이핑하는 그대로를 보여줍니다.
+ * 적색의 커서 : 타이핑하는 속도를 측정해서 그 결과를 보여줍니다.
+ * 녹색의 커서 : 다른 사람이 타이핑했던 문장 중 하나를 보여줍니다.
+ * 청색의 커서 : 신경망학습을 통해 생성된 문장 중 하나를 보여줍니다.
 
 
 ## License
@@ -35,7 +55,7 @@ by 김승범(SeungbumKim@PROTOROOM)
  * [Hangul.js](https://github.com/e-/Hangul.js), MIT License by Jaemin Jo
  * favicon keyboard ico, CC by [Yusuke Kamiyamane](http://p.yusukekamiyamane.com/)
  * [D2 coding font](https://github.com/naver/d2codingfont), OpenFontLicense
- * Google Spreadsheet App Script
+ * /google_script/sheet_api.js 는 Google Spreadsheet App Script를 사용하였습니다.
  * [Text Generation using a RNN](https://colab.research.google.com/github/tensorflow/tensorflow/blob/master/tensorflow/contrib/eager/python/examples/generative_examples/text_generation.ipynb), Apache License, Copyright 2018 The TensorFlow Authors
  * 신경망학습을 통해 생성된 문장은 아래 수업에 참여한 총 41명 학생의 텍스트(text/tech_culture.txt)를 학습 데이터로 사용하였다.
    * 2018년도 1학기 성균관대학교 테크노컬쳐론
