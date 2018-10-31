@@ -193,11 +193,13 @@ function keyPressed() {
 
 function keyTyped() {
   // timestamp();
-  if (key == 1) currentModel = modelSelf;
-  if (key == 2) currentModel = modelSpeed;
-  if (key == 9) {
-    changeTypingModel();
-    saveGoogleSheet();
+  if (debug) {
+    if (key == 1) currentModel = modelSelf;
+    if (key == 2) currentModel = modelSpeed;
+    if (key == 9) {
+      changeTypingModel();
+      saveGoogleSheet();
+    }
   }
 
   currentModel.keyTyped(key);
