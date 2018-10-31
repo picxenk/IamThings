@@ -29,6 +29,7 @@ function preload() {
 function setup() {
   frameRate(10);
   createCanvas(windowWidth, windowHeight);
+  noCursor();
 
   qunit = round(windowWidth/18);
   topH = qunit*7;
@@ -79,6 +80,7 @@ function changeTypingModel() {
   if (currentModel.name == 'self') {
     saveTexts('otherTexts', Hangul.a(currentModel.texts));
     currentModel = modelSpeed;
+    saveGoogleSheet();
   } else if (currentModel.name == 'speed') {
     currentModel = modelOther;
   } else if (currentModel.name == 'other') {
@@ -93,7 +95,7 @@ function changeTypingModel() {
   typeCount = 0;
   modelChangeCount += 1;
 
-  if (modelChangeCount % 10 == 0) saveGoogleSheet();
+  // if (modelChangeCount % 3 == 0) saveGoogleSheet();
 
   if (debug) console.log("[Change TypingModel] after :" + currentModel.name);
 }
