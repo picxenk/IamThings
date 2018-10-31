@@ -84,3 +84,7 @@ function readGoogleSheet(name) {
   };
   $.ajax(d);
 }
+
+function reload() {
+  window.location.reload(true);
+}

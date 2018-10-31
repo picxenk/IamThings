@@ -70,6 +70,7 @@ function draw() {
   cursor.show();
 
   showGuide();
+  checkActivity();
 }
 
 
@@ -122,6 +123,22 @@ function showGuide() {
 }
 
 
+function checkActivity() {
+  var now = round(millis());
+  var diff = now - tLastTyped;
+
+  if (diff > 10000) {
+    currentModel = modelSelf;
+    cursor.modelColor(currentModel.name);
+    cursor.blinkSlow();
+    currentModel.init();
+    typeCount = 0;
+    modelChangeCount += 1;
+    fullTexts = [];
+    renderTexts();
+  }
+}
+
 function timestamp() {
   var now = round(millis());
   var diff = now - tLastTyped;
@@ -146,7 +163,7 @@ function renderTexts() {
   var last = editor.renderText(fullTexts.concat(currentModel.texts));
   cursor.setPosition(last[0], editor.y+last[1]-unit);
 
-  if (last[1]+unit*1.5 > editor.h) fullTexts = [];
+  if (last[1]+unit*3 > editor.h) fullTexts = [];
 }
 
 
