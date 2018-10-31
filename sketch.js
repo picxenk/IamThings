@@ -127,7 +127,7 @@ function checkActivity() {
   var now = round(millis());
   var diff = now - tLastTyped;
 
-  if (diff > 20000) {
+  if (diff > 60000) {
     currentModel = modelSelf;
     cursor.modelColor(currentModel.name);
     cursor.blinkSlow();

@@ -2,7 +2,7 @@
 function SelfTypingModel() {
   this.name = 'self';
   this.texts = [];
-  this.typeLimit = 100;
+  this.typeLimit = 60;
 }
 
 SelfTypingModel.prototype.init = function() {
