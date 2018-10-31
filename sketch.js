@@ -17,7 +17,7 @@ var modelChangeCount = 0;
 var typeCount = 0;
 var tLastTyped = 0;
 var tRecentTypes = [];
-
+var updateReady = true;
 
 var debug = false;
 
@@ -136,6 +136,18 @@ function checkActivity() {
     modelChangeCount += 1;
     fullTexts = [];
     renderTexts();
+  }
+
+  var m = minute();
+  // console.log("current m : " + m);
+  if (m == 0 || m == 20 || m == 40) {
+    if (updateReady) {
+      readGoogleSheet('otherTextsNew');
+      readGoogleSheet('MLTexts');
+      updateReady = false;
+    }
+  } else {
+    updateReady = true;
   }
 }
 
