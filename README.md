@@ -1,6 +1,6 @@
 # IamThings
 ```
-I am Things of Internet, am I ? (2018)
+I am (Things of Internet), am I ? (2018)
 by 김승범(SeungbumKim@PROTOROOM)
 
 나는 입력이 있고, 처리가 있고, 출력이 있다.
