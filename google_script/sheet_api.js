@@ -26,13 +26,15 @@ function handleResponse(e) {
 
 
     if (action == 'write') {
+      var nextRow = sheet.getLastRow() + 1;
       var data = [];
       var texts = JSON.parse(e.parameter['texts']);
       for (var i=0; i<texts.length; i++) {
         data.push([texts[i]]);
       }
 
-      sheet.getRange(2, 1, data.length, 1).setValues(data);
+      sheet.getRange(nextRow, 1, data.length, 1).setValues(data);
+      sheet.getRange(nextRow, 2).setValue(new Date());
     }
 
 
