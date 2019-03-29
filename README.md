@@ -1,4 +1,7 @@
 # IamThings
+
+![](i_am_things.jpg 'I am Things of Interent, am I?')
+
 ```
 I am (Things of Internet), am I ? (2018)
 by 김승범(SeungbumKim@PROTOROOM)
