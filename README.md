@@ -31,6 +31,7 @@ by 김승범(SeungbumKim@PROTOROOM)
 
 화면 속 타이핑 하는 순간을 가리키는 '커서의 변화'와 흘러가는 화면 속의 문자들과 혼란스러워질 여러분의 생각을 관찰해주세요.
 
+----
 
 There are a display monitor and a blank keyboard on the desk. The screen of the monitor shows a question for the participant:
 
